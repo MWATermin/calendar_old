@@ -2,6 +2,8 @@ package calendar;
 
 import java.util.*;
 
+import javax.ws.rs.QueryParam;
+
 /*
 //return = terminID
 int createTermin(Termin termin)  statefull
@@ -20,7 +22,7 @@ Boolean deleteTermin(Int terminID, User user)   stateless
 List getTermine(Termin termin, Int timeRange) statefull
 List getTermine(Termin termin, Int timeRange, User user) stateless
 
-//return = aktuellen Wert für termin
+//return = aktuellen Wert fï¿½r termin
 Termin updateTermin(int terminID, Termin newTermin)
 
 //return = Liste von Termin
@@ -28,7 +30,7 @@ List searchNextFreeTermin(List member, Date fromDate, Date toDate, int terminLen
 */
 public interface CalInterface {
 	
-	public String getTest();
+	public String DatesToHTML(String usr);
 	
 	public Integer createDate( Date date, String username);
 	

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.annotation.security.*;
 
@@ -18,6 +19,7 @@ public class Cal implements CalRemoteInterface {
 	
 	@PersistenceContext(unitName = "calenderPersistenceUnit")
 	private EntityManager em;
+	private static String home = "<a href=\"../../../../../../../../../../calendar/\">Back</a>";
 	
     public Cal() {
        
@@ -26,11 +28,52 @@ public class Cal implements CalRemoteInterface {
     @PermitAll
     @Override
     @GET
-    @Path("/test")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getTest()
+    @Path("/dates")
+    @Produces(MediaType.TEXT_HTML)
+    public String DatesToHTML(@QueryParam("usr") String usr)
     {
-    	return "test";
+    	int i, count;
+    	String html = null;
+    	ArrayList<Date> Dates;
+    	
+    	
+    	if(!usr.isEmpty() && !(Dates = getAllDatesInDB(usr)).isEmpty())
+    	{
+    		html =  "<h1>Dates: " + usr + "</h1></br>";
+			html += "<table border=\"1\">";
+			html += "	<tr>";
+			html += "		<th>Id</th>";
+			html += "		<th>Author</th>";
+			html += "		<th>Description</th>";
+			html += "		<th>Label</th>";
+			html += "		<th>Place</th>";
+			html += "		<th>Duration</th>";
+			html += "		<th>Date</th>";
+			html += "	</tr>";
+    		
+    		for( i=0, count = Dates.size(); i<count; i++)
+    		{
+    			Date D = Dates.get(i);
+    			html += "	<tr>";
+    			html += "		<td>" + D.getId() 						+ "</td>";
+    			html += "		<td>" + D.getAuthor() 					+ "</td>";
+    			html += "		<td>" + D.getDescription() 				+ "</td>";
+    			html += "		<td>" + D.getLabel() 					+ "</td>";
+    			html += "		<td>" + D.getPlace() 					+ "</td>";
+    			html += "		<td>" + D.getDuration() 				+ "</td>";
+    			html += "		<td>" + D.getDateAndTime().getTime() 	+ "</td>";
+    			html += "	</tr>";
+    		}
+
+			html += "</table>";
+    	}
+    	else
+    	{
+    		html = "<b>Error: No valid user specified!</b>";
+    	}
+    		
+    	
+    	return html + "</br>" + home;
     }
     
 	@PermitAll

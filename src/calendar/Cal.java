@@ -19,7 +19,7 @@ public class Cal implements CalRemoteInterface {
 	
 	@PersistenceContext(unitName = "calenderPersistenceUnit")
 	private EntityManager em;
-	private static String home = "<a href=\"../../../../../../../../../../calendar/\">Back</a>";
+	private static String home = "<a href=\"../../../../../../../../../../Calendar_Rest/\">Back</a>";
 	
     public Cal() {
        

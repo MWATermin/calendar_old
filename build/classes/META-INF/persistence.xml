@@ -8,6 +8,7 @@
 		<!--  <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source> -->
 		<jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
 		<class>package calendar.Date</class>
+		<class>package calendar.User</class>
 		<properties>
 			<!--  <property name="hibernate.connection.password" value="" /> -->
 			<!--  <property name="hibernate.connection.username" value="root" /> -->

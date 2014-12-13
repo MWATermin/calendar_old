@@ -53,6 +53,8 @@ public class calendarClient {
 		 */
 		
 		
+
+		
 		Calendar cal = new GregorianCalendar(2013,1,28,13,24,56);
 		
 		Date date = new Date(cal, 30, "bla", "cok", "suking", "gangban111", null);
@@ -71,10 +73,11 @@ public class calendarClient {
 		CalendarInterface.updateDate(myid, d);
 		System.out.println("updateDate(" + myid + ", d)");
 		
+		
 		d = new Date(cal, 30, username, "bad", "beer123", "gangban11", members);
 		CalendarInterface.updateDate(myid, d);
 		System.out.println("updateDate(" + myid + ", d)");
-		
+				
 		// Print ArrayList<Date>
 		ArrayList<Date> DateList;
 		DateList = CalendarInterface.getAllDatesInDB( username);
